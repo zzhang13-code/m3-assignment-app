@@ -2,13 +2,16 @@ extends layout
 
 block content
   if errors
-    ul
-      for error in errors
-        li= error.msg
+    div.alert.alert-danger
+      ul.mb-0
+        for error in errors
+          li= error.msg
   - data = data || {}
   form(action="." method="POST")
-    label(for="name") Name:
-    input(type="text" id="name" name="name" value=data.name)
-    label(for="email") Email:
-    input(type="email" id="email" name="email" value=data.email)
-    input(type="submit" value="Submit")
+    div.form-group
+      label(for="name") Name:
+      input.form-control(type="text" id="name" name="name" value=data.name)
+    div.form-group
+      label(for="email") Email:
+      input.form-control(type="email" id="email" name="email" value=data.email)
+    input.btn.btn-primary(type="submit" value="Submit")
