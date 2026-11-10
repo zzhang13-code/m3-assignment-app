@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  p No registrations yet :(
+  if registrations.length
+    table
+      thead
+        tr
+          th Name
+          th Email
+      tbody
+        each registration in registrations
+          tr
+            td= registration.name
+            td= registration.email
+  else
+    p No registrations yet :(
