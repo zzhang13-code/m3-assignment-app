@@ -14,7 +14,13 @@ router.post('/', [
 ], function (req, res) {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
-    res.send('Thanks for registering!');
+    const registration = new Registration(req.body);
+    registration.save()
+      .then(() => { res.send('Thank you for your registration!'); })
+      .catch((err) => {
+        console.log(err);
+        res.send('Sorry! Something went wrong.');
+      });
   } else {
     res.render('form', {
       title: 'Registration form',
